@@ -6,7 +6,7 @@ function App() {
   return (
     <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/Profile" element={<Profile />} /> 
+        <Route path="/react-login-ui-phi.vercel.app/Profile" element={<Profile />} /> 
         
     </Routes>
   );
