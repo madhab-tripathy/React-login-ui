@@ -36,8 +36,8 @@ const Login = ({loginFn,loginValue})=>{
             .then(data => {
                 loginFn(true);
                 setUserData(data)
-                localStorage.setItem("user",JSON.stringify(data));
                 setMessage("Successfully Login");
+                localStorage.setItem("user",JSON.stringify(data));
             })
             .catch(error =>{ 
                 loginFn(false);
@@ -45,6 +45,7 @@ const Login = ({loginFn,loginValue})=>{
             })
         }    
     }
+
     return (
         <section className="container" id="box">
             
@@ -64,9 +65,7 @@ const Login = ({loginFn,loginValue})=>{
                 <button type="submit" className="btn" id="loginBtn">Login</button>
                 <a className="pwd-link"href="#">Forget Your Password?</a>
                 
-                {message && <p id="error-message">{message}</p>}
-
-                
+                {message && <p id="error-message">{message}</p>}                
             </form>
             <small id="signup-redirect">Dont't have an account? <a href="signup.html">Signup</a></small>
             <div className="bisect">

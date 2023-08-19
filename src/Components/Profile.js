@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 const Profile = ()=>{
-    
     const user = JSON.parse(localStorage.getItem('user'));
     const [userDetails, setUserDetails] = useState('');
-    const [uId,setUserId] = useState('');
     useEffect(()=>{
         if(user !== "") {
-            setUserId(user.id);
             fetch(`https://dummyjson.com/users/${user.id}`,{
                 method: 'GET'
             })
@@ -18,7 +15,7 @@ const Profile = ()=>{
                 return response.json();
             })
             .then(data => {
-                document.getElementById('box').style.display = 'none';
+                // document.getElementById('box').style.display = 'none';
                 localStorage.setItem('userDetails',JSON.stringify(data));
                 setUserDetails(data);
             })
@@ -26,7 +23,7 @@ const Profile = ()=>{
                 console.log(error);
             })
         }
-    },[uId])
+    },[])
     
     return(
         <div>
