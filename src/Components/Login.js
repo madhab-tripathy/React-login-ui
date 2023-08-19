@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
 
-const Login = ()=>{
+const Login = ({loginFn,loginValue})=>{
     const [userData, setUserData] = useState({
         username:"",
         password:""
     });
-    const [isLogin, setIsLogin] = useState(false);
+    
     const [message, setMessage] = useState("");
     
 
@@ -34,21 +34,19 @@ const Login = ()=>{
                 return response.json();
             })
             .then(data => {
-                setIsLogin(true);
+                loginFn(true);
                 setUserData(data)
+                localStorage.setItem("user",JSON.stringify(data));
                 setMessage("Successfully Login");
             })
             .catch(error =>{ 
+                loginFn(false);
                 setMessage(error.message);
             })
         }    
     }
-    if(isLogin){
-        localStorage.setItem("user",JSON.stringify(userData));
-    }
-    
     return (
-        <section className="container">
+        <section className="container" id="box">
             
             <form onSubmit={fetchData} className="modal-box login-page">
                 <header>
@@ -67,6 +65,8 @@ const Login = ()=>{
                 <a className="pwd-link"href="#">Forget Your Password?</a>
                 
                 {message && <p id="error-message">{message}</p>}
+
+                
             </form>
             <small id="signup-redirect">Dont't have an account? <a href="signup.html">Signup</a></small>
             <div className="bisect">

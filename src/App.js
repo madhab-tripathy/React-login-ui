@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Login from './Components/Login';
-import { Routes, Route} from 'react-router-dom'
 import Profile from './Components/Profile';
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
   return (
-    <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/react-login-ui-phi.vercel.app/Profile" element={<Profile />} /> 
-        
-    </Routes>
+    <div>
+      {/* {isLogin == false ? <Login loginFn={setIsLogin} loginValue={isLogin}/> : window.location.href="Profile"} */}
+      <Login loginFn={setIsLogin} loginValue={isLogin}/>
+      <Profile />
+    </div>
   );
 }
 
